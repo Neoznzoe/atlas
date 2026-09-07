@@ -1,16 +1,15 @@
 import { useRef } from "react";
-import countries from "../data/countries.js";
 
-function AllerAuPays() {
+function AllerAuPays({ pays }) {
   const inputRef = useRef(null);
 
   function gererSoumission(e) {
     e.preventDefault();
     const terme = inputRef.current.value.trim().toLowerCase();
-    const pays = countries.find((country) => country.name.toLowerCase() === terme);
+    const paysTrouve = pays.find((country) => country.name.toLowerCase() === terme);
 
-    if (pays) {
-      alert(`${pays.name} — capitale : ${pays.capital ?? "inconnue"}`);
+    if (paysTrouve) {
+      alert(`${paysTrouve.name} — capitale : ${paysTrouve.capital ?? "inconnue"}`);
     } else {
       alert(`Aucun pays ne correspond à « ${inputRef.current.value} ».`);
     }

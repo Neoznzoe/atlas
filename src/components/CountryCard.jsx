@@ -12,7 +12,11 @@ function CountryCard({
   if (!capital) {
     return (
       <article className="card">
-        <img src={flag} alt={`Drapeau : ${name}`} className="card__flag" />
+        {flag ? (
+          <img src={flag} alt={`Drapeau : ${name}`} className="card__flag" />
+        ) : (
+          <div className="card__flag card__flag--absent" role="img" aria-label={`Drapeau indisponible pour ${name}`} />
+        )}
         <h2>{name}</h2>
         <p>Données incomplètes</p>
       </article>
