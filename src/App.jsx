@@ -1,11 +1,12 @@
 import { useCallback, useEffect, useReducer, useState } from "react";
-import Header from "./components/Header.jsx";
+import TopBar from "./components/TopBar.jsx";
 import Filtres from "./components/Filtres.jsx";
 import Grille from "./components/Grille.jsx";
 import AllerAuPays from "./components/AllerAuPays.jsx";
 import BoutonHautDePage from "./components/BoutonHautDePage.jsx";
-import NavPrincipale from "./components/NavPrincipale.jsx";
 import Quiz from "./components/Quiz.jsx";
+import EtatChargement from "./components/EtatChargement.jsx";
+import EtatErreur from "./components/EtatErreur.jsx";
 import { useCountries } from "./hooks/useCountries.js";
 import { useLocalStorage } from "./hooks/useLocalStorage.js";
 import { listeReducer, etatInitial } from "./reducers/listeReducer.js";
@@ -42,11 +43,11 @@ function App() {
   }
 
   if (chargement) {
-    return <p className="etat">Chargement…</p>;
+    return <EtatChargement />;
   }
 
   if (erreur) {
-    return <p className="etat etat--erreur">Une erreur est survenue : {erreur}</p>;
+    return <EtatErreur message={erreur} />;
   }
 
   if (vue === "quiz") {
@@ -65,31 +66,31 @@ function App() {
   const paysAffiches = trierPays(paysFiltres, etatListe.tri, etatListe.ordre);
 
   return (
-    <>
-      <Header nombreDePays={pays.length} nombreDeFavoris={favoris.length} />
+    <div className="min-h-dvh bg-bg">
+      <TopBar nombreDePays={pays.length} nombreDeFavoris={favoris.length} onOuvrirQuiz={() => setVue("quiz")} />
 
-      <NavPrincipale onOuvrirQuiz={() => setVue("quiz")} />
+      <div className="space-y-4 pb-16">
+        <Filtres
+          etat={etatListe}
+          dispatch={dispatch}
+          regions={regions}
+          onViderFavoris={viderTousLesFavoris}
+          onViderCache={viderLeCache}
+        />
 
-      <Filtres
-        etat={etatListe}
-        dispatch={dispatch}
-        regions={regions}
-        onViderFavoris={viderTousLesFavoris}
-        onViderCache={viderLeCache}
-      />
+        <AllerAuPays pays={pays} />
 
-      <AllerAuPays pays={pays} />
-
-      <Grille
-        pays={paysAffiches}
-        nombreAffiches={nombreAffiches}
-        onChargerPlus={chargerPlus}
-        favoris={favoris}
-        onToggleFavorite={basculerFavori}
-      />
+        <Grille
+          pays={paysAffiches}
+          nombreAffiches={nombreAffiches}
+          onChargerPlus={chargerPlus}
+          favoris={favoris}
+          onToggleFavorite={basculerFavori}
+        />
+      </div>
 
       <BoutonHautDePage />
-    </>
+    </div>
   );
 }
 
