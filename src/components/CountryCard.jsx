@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Card from "./Card.jsx";
 
 function CountryCard({
@@ -61,4 +62,4 @@ function CountryCard({
   );
 }
 
-export default CountryCard;
+export default memo(CountryCard);
