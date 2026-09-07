@@ -1,0 +1,68 @@
+const countries = [
+  {
+    id: "fr",
+    name: "France",
+    capital: "Paris",
+    population: 67391582,
+    region: "Europe",
+    flag: "https://flagcdn.com/w320/fr.png",
+  },
+  {
+    id: "jp",
+    name: "Japon",
+    capital: "Tokyo",
+    population: 125836021,
+    region: "Asie",
+    flag: "https://flagcdn.com/w320/jp.png",
+  },
+  {
+    id: "br",
+    name: "Brésil",
+    capital: "Brasilia",
+    population: 212559417,
+    region: "Amériques",
+    flag: "https://flagcdn.com/w320/br.png",
+  },
+  {
+    id: "ca",
+    name: "Canada",
+    capital: "Ottawa",
+    population: 38005238,
+    region: "Amériques",
+    flag: "https://flagcdn.com/w320/ca.png",
+  },
+  {
+    id: "eg",
+    name: "Égypte",
+    capital: "Le Caire",
+    population: 102334404,
+    region: "Afrique",
+    flag: "https://flagcdn.com/w320/eg.png",
+  },
+  {
+    id: "au",
+    name: "Australie",
+    capital: "Canberra",
+    population: 25499884,
+    region: "Océanie",
+    flag: "https://flagcdn.com/w320/au.png",
+  },
+  {
+    id: "in",
+    name: "Inde",
+    capital: "New Delhi",
+    population: 1380004385,
+    region: "Asie",
+    flag: "https://flagcdn.com/w320/in.png",
+  },
+  {
+    id: "no",
+    name: "Norvège",
+    capital: "Oslo",
+    population: 5421241,
+    region: "Europe",
+    flag: "https://flagcdn.com/w320/no.png",
+  },
+];
+
+export default countries;
