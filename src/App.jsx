@@ -1,11 +1,14 @@
-import { useReducer } from "react";
+import { useCallback, useEffect, useReducer, useState } from "react";
 import Header from "./components/Header.jsx";
 import Filtres from "./components/Filtres.jsx";
 import Grille from "./components/Grille.jsx";
 import AllerAuPays from "./components/AllerAuPays.jsx";
+import BoutonHautDePage from "./components/BoutonHautDePage.jsx";
 import { useCountries } from "./hooks/useCountries.js";
 import { useLocalStorage } from "./hooks/useLocalStorage.js";
 import { listeReducer, etatInitial } from "./reducers/listeReducer.js";
+
+const TAILLE_PAGE = 24;
 
 function trierPays(pays, tri, ordre) {
   const paysTries = [...pays].sort((a, b) => {
@@ -20,6 +23,15 @@ function App() {
   const { pays, chargement, erreur, viderLeCache } = useCountries();
   const [favoris, setFavoris] = useLocalStorage("atlas:favoris", []);
   const [etatListe, dispatch] = useReducer(listeReducer, etatInitial);
+  const [nombreAffiches, setNombreAffiches] = useState(TAILLE_PAGE);
+
+  useEffect(() => {
+    setNombreAffiches(TAILLE_PAGE);
+  }, [etatListe.recherche, etatListe.region, etatListe.afficherFavorisSeulement]);
+
+  const chargerPlus = useCallback(() => {
+    setNombreAffiches((n) => n + TAILLE_PAGE);
+  }, []);
 
   function basculerFavori(id) {
     setFavoris((actuels) =>
@@ -65,7 +77,15 @@ function App() {
 
       <AllerAuPays pays={pays} />
 
-      <Grille pays={paysAffiches} favoris={favoris} onToggleFavorite={basculerFavori} />
+      <Grille
+        pays={paysAffiches}
+        nombreAffiches={nombreAffiches}
+        onChargerPlus={chargerPlus}
+        favoris={favoris}
+        onToggleFavorite={basculerFavori}
+      />
+
+      <BoutonHautDePage />
     </>
   );
 }
