@@ -1,4 +1,22 @@
+:root {
+  --couleur-fond: #ffffff;
+  --couleur-texte: #1a1a1a;
+  --couleur-carte: #f5f5f5;
+}
+
+:root[data-theme="sombre"] {
+  --couleur-fond: #1a1a1a;
+  --couleur-texte: #f5f5f5;
+  --couleur-carte: #2b2b2b;
+}
+
+body {
+  background-color: var(--couleur-fond);
+  color: var(--couleur-texte);
+}
+
 .card {
+  background-color: var(--couleur-carte);
   border: 2px solid transparent;
 }
 
