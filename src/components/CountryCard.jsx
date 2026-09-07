@@ -3,6 +3,7 @@ function CountryCard({
   name,
   capital,
   population,
+  superficie,
   region,
   flag,
   nombreDeLangues,
@@ -27,7 +28,11 @@ function CountryCard({
 
   return (
     <article className={classes}>
-      <img src={flag} alt={`Drapeau : ${name}`} className="card__flag" />
+      {flag ? (
+        <img src={flag} alt={`Drapeau : ${name}`} className="card__flag" />
+      ) : (
+        <div className="card__flag card__flag--absent" role="img" aria-label={`Drapeau indisponible pour ${name}`} />
+      )}
       <button
         type="button"
         className="card__favorite-toggle"
@@ -39,6 +44,7 @@ function CountryCard({
       <h2>{name}</h2>
       <p>Capitale : {capital}</p>
       <p>Population : {population.toLocaleString("fr-FR")}</p>
+      {superficie != null && <p>Superficie : {superficie.toLocaleString("fr-FR")} km²</p>}
       <p>Région : {region}</p>
       <p className="card__badge">{population > 50000000 ? "Grand pays" : "Petit pays"}</p>
       {nombreDeLangues > 0 && (

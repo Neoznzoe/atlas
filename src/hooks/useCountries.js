@@ -11,6 +11,7 @@ function transformerPays(objet) {
     name: objet.names.common,
     capital: objet.capitals[0]?.name ?? null,
     population: objet.population,
+    superficie: objet.area?.kilometers ?? null,
     region: objet.region,
     flag: objet.flag.url_png || objet.flag.url_svg || null,
     nombreDeLangues: objet.languages.length,

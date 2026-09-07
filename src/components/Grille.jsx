@@ -14,6 +14,7 @@ function Grille({ pays, favoris, onToggleFavorite }) {
           name={country.name}
           capital={country.capital}
           population={country.population}
+          superficie={country.superficie}
           region={country.region}
           flag={country.flag}
           nombreDeLangues={country.nombreDeLangues}
