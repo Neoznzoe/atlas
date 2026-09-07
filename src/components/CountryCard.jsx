@@ -1,3 +1,5 @@
+import Card from "./Card.jsx";
+
 function CountryCard({
   id,
   name,
@@ -9,34 +11,36 @@ function CountryCard({
   nombreDeLangues,
   estFavori,
   onToggleFavorite,
+  onOpenDetail,
 }) {
+  const drapeau = flag ? (
+    <img src={flag} alt={`Drapeau : ${name}`} className="card__flag" />
+  ) : (
+    <div className="card__flag card__flag--absent" role="img" aria-label={`Drapeau indisponible pour ${name}`} />
+  );
+
   if (!capital) {
     return (
-      <article className="card">
-        {flag ? (
-          <img src={flag} alt={`Drapeau : ${name}`} className="card__flag" />
-        ) : (
-          <div className="card__flag card__flag--absent" role="img" aria-label={`Drapeau indisponible pour ${name}`} />
-        )}
+      <Card>
+        {drapeau}
         <h2>{name}</h2>
         <p>Données incomplètes</p>
-      </article>
+      </Card>
     );
   }
 
-  const classes = `card ${estFavori ? "card--favorite" : ""}`;
+  function gererClicEtoile(e) {
+    e.stopPropagation();
+    onToggleFavorite(id);
+  }
 
   return (
-    <article className={classes}>
-      {flag ? (
-        <img src={flag} alt={`Drapeau : ${name}`} className="card__flag" />
-      ) : (
-        <div className="card__flag card__flag--absent" role="img" aria-label={`Drapeau indisponible pour ${name}`} />
-      )}
+    <Card favori={estFavori} className="card--cliquable" onClick={() => onOpenDetail(id)}>
+      {drapeau}
       <button
         type="button"
         className="card__favorite-toggle"
-        onClick={() => onToggleFavorite(id)}
+        onClick={gererClicEtoile}
         aria-label={estFavori ? "Retirer des favoris" : "Ajouter aux favoris"}
       >
         {estFavori ? "★" : "☆"}
@@ -53,7 +57,7 @@ function CountryCard({
         </p>
       )}
       {estFavori && <p className="card__favorite-note">Dans vos favoris</p>}
-    </article>
+    </Card>
   );
 }
 
