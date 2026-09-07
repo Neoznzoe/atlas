@@ -4,26 +4,21 @@ import Filtres from "./components/Filtres.jsx";
 import Grille from "./components/Grille.jsx";
 import AllerAuPays from "./components/AllerAuPays.jsx";
 import BoutonHautDePage from "./components/BoutonHautDePage.jsx";
+import NavPrincipale from "./components/NavPrincipale.jsx";
+import Quiz from "./components/Quiz.jsx";
 import { useCountries } from "./hooks/useCountries.js";
 import { useLocalStorage } from "./hooks/useLocalStorage.js";
 import { listeReducer, etatInitial } from "./reducers/listeReducer.js";
+import { trierPays } from "./utils/trierPays.js";
 
 const TAILLE_PAGE = 24;
-
-function trierPays(pays, tri, ordre) {
-  const paysTries = [...pays].sort((a, b) => {
-    if (tri === "population") return a.population - b.population;
-    if (tri === "superficie") return (a.superficie ?? 0) - (b.superficie ?? 0);
-    return a.name.localeCompare(b.name);
-  });
-  return ordre === "croissant" ? paysTries : paysTries.reverse();
-}
 
 function App() {
   const { pays, chargement, erreur, viderLeCache } = useCountries();
   const [favoris, setFavoris] = useLocalStorage("atlas:favoris", []);
   const [etatListe, dispatch] = useReducer(listeReducer, etatInitial);
   const [nombreAffiches, setNombreAffiches] = useState(TAILLE_PAGE);
+  const [vue, setVue] = useState("explorateur");
 
   useEffect(() => {
     setNombreAffiches(TAILLE_PAGE);
@@ -52,6 +47,10 @@ function App() {
     return <p className="etat etat--erreur">Une erreur est survenue : {erreur}</p>;
   }
 
+  if (vue === "quiz") {
+    return <Quiz pays={pays} onQuitter={() => setVue("explorateur")} />;
+  }
+
   const regions = [...new Set(pays.map((country) => country.region))].sort();
 
   const paysFiltres = pays.filter((country) => {
@@ -66,6 +65,8 @@ function App() {
   return (
     <>
       <Header nombreDePays={pays.length} nombreDeFavoris={favoris.length} />
+
+      <NavPrincipale onOuvrirQuiz={() => setVue("quiz")} />
 
       <Filtres
         etat={etatListe}

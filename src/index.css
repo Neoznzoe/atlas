@@ -23,3 +23,11 @@ body {
 .card--favorite {
   border-color: gold;
 }
+
+.quiz__proposition--correcte {
+  background-color: #8fd694;
+}
+
+.quiz__proposition--incorrecte {
+  background-color: #e88b8b;
+}
