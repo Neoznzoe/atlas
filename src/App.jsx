@@ -1,9 +1,10 @@
-import { useReducer, useState } from "react";
+import { useReducer } from "react";
 import Header from "./components/Header.jsx";
 import Filtres from "./components/Filtres.jsx";
 import Grille from "./components/Grille.jsx";
 import AllerAuPays from "./components/AllerAuPays.jsx";
 import { useCountries } from "./hooks/useCountries.js";
+import { useLocalStorage } from "./hooks/useLocalStorage.js";
 import { listeReducer, etatInitial } from "./reducers/listeReducer.js";
 
 function trierPays(pays, tri, ordre) {
@@ -17,7 +18,7 @@ function trierPays(pays, tri, ordre) {
 
 function App() {
   const { pays, chargement, erreur, viderLeCache } = useCountries();
-  const [favoris, setFavoris] = useState([]);
+  const [favoris, setFavoris] = useLocalStorage("atlas:favoris", []);
   const [etatListe, dispatch] = useReducer(listeReducer, etatInitial);
 
   function basculerFavori(id) {
