@@ -6,6 +6,7 @@ const countries = [
     population: 67391582,
     region: "Europe",
     flag: "https://flagcdn.com/w320/fr.png",
+    nombreDeLangues: 1,
   },
   {
     id: "jp",
@@ -14,6 +15,7 @@ const countries = [
     population: 125836021,
     region: "Asie",
     flag: "https://flagcdn.com/w320/jp.png",
+    nombreDeLangues: 1,
   },
   {
     id: "br",
@@ -22,6 +24,7 @@ const countries = [
     population: 212559417,
     region: "Amériques",
     flag: "https://flagcdn.com/w320/br.png",
+    nombreDeLangues: 1,
   },
   {
     id: "ca",
@@ -30,6 +33,7 @@ const countries = [
     population: 38005238,
     region: "Amériques",
     flag: "https://flagcdn.com/w320/ca.png",
+    nombreDeLangues: 2,
   },
   {
     id: "eg",
@@ -38,6 +42,7 @@ const countries = [
     population: 102334404,
     region: "Afrique",
     flag: "https://flagcdn.com/w320/eg.png",
+    nombreDeLangues: 1,
   },
   {
     id: "au",
@@ -46,6 +51,7 @@ const countries = [
     population: 25499884,
     region: "Océanie",
     flag: "https://flagcdn.com/w320/au.png",
+    nombreDeLangues: 1,
   },
   {
     id: "in",
@@ -54,6 +60,7 @@ const countries = [
     population: 1380004385,
     region: "Asie",
     flag: "https://flagcdn.com/w320/in.png",
+    nombreDeLangues: 22,
   },
   {
     id: "no",
@@ -62,6 +69,16 @@ const countries = [
     population: 5421241,
     region: "Europe",
     flag: "https://flagcdn.com/w320/no.png",
+    nombreDeLangues: 1,
+  },
+  {
+    id: "aq",
+    name: "Antarctique",
+    capital: null,
+    population: 1000,
+    region: "Polaire",
+    flag: "https://flagcdn.com/w320/aq.png",
+    nombreDeLangues: 0,
   },
 ];
 

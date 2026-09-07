@@ -25,6 +25,7 @@ function App() {
             population={country.population}
             region={country.region}
             flag={country.flag}
+            nombreDeLangues={country.nombreDeLangues}
             estFavori={favoris.includes(country.id)}
             onToggleFavorite={basculerFavori}
           />
