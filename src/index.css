@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
   --couleur-fond: #ffffff;
   --couleur-texte: #1a1a1a;
@@ -15,15 +17,6 @@ body {
   color: var(--couleur-texte);
 }
 
-.card {
-  background-color: var(--couleur-carte);
-  border: 2px solid transparent;
-}
-
-.card--favorite {
-  border-color: gold;
-}
-
 .quiz__proposition--correcte {
   background-color: #8fd694;
 }
@@ -32,32 +25,3 @@ body {
   background-color: #e88b8b;
 }
 
-.card--cliquable {
-  cursor: pointer;
-}
-
-.modale-fond {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.modale-contenu {
-  position: relative;
-  background-color: var(--couleur-fond);
-  color: var(--couleur-texte);
-  padding: 2rem;
-  border-radius: 0.5rem;
-  max-width: 30rem;
-  max-height: 80vh;
-  overflow-y: auto;
-}
-
-.modale-fermer {
-  position: absolute;
-  top: 0.5rem;
-  right: 0.5rem;
-}

@@ -1,0 +1,12 @@
+.card {
+  background-color: var(--couleur-carte);
+  border: 2px solid transparent;
+}
+
+.favorite {
+  border-color: gold;
+}
+
+.cliquable {
+  cursor: pointer;
+}

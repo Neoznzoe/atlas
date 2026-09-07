@@ -31,7 +31,11 @@ function Grille({ pays, nombreAffiches, onChargerPlus, favoris, onToggleFavorite
       {paysAffiches.length < pays.length && <div ref={sentinelle} className="sentinelle" />}
 
       {paysDetail && (
-        <Modale titre={paysDetail.name} onClose={() => setIdSelectionne(null)}>
+        <Modale
+          titre={paysDetail.name}
+          estFavori={favoris.includes(paysDetail.id)}
+          onClose={() => setIdSelectionne(null)}
+        >
           <DetailPays pays={paysDetail} />
         </Modale>
       )}

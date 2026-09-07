@@ -1,5 +1,7 @@
-function Card({ children, favori = false, className = "", onClick }) {
-  const classes = `card ${favori ? "card--favorite" : ""} ${className}`.trim();
+import styles from "./Card.module.css";
+
+function Card({ children, favori = false, cliquable = false, onClick }) {
+  const classes = `${styles.card} ${favori ? styles.favorite : ""} ${cliquable ? styles.cliquable : ""}`.trim();
 
   return (
     <article className={classes} onClick={onClick}>

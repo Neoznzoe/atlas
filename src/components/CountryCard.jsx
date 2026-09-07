@@ -1,5 +1,6 @@
 import { memo } from "react";
 import Card from "./Card.jsx";
+import Badge from "./Badge.jsx";
 
 function CountryCard({
   id,
@@ -36,7 +37,7 @@ function CountryCard({
   }
 
   return (
-    <Card favori={estFavori} className="card--cliquable" onClick={() => onOpenDetail(id)}>
+    <Card favori={estFavori} cliquable onClick={() => onOpenDetail(id)}>
       {drapeau}
       <button
         type="button"
@@ -51,7 +52,7 @@ function CountryCard({
       <p>Population : {population.toLocaleString("fr-FR")}</p>
       {superficie != null && <p>Superficie : {superficie.toLocaleString("fr-FR")} km²</p>}
       <p>Région : {region}</p>
-      <p className="card__badge">{population > 50000000 ? "Grand pays" : "Petit pays"}</p>
+      <Badge grand={population > 50000000} />
       {nombreDeLangues > 0 && (
         <p>
           {nombreDeLangues} langue{nombreDeLangues > 1 ? "s" : ""}
